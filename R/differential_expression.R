@@ -60,6 +60,7 @@ FindAllMarkers <- function(
   min.cells.group = 3,
   pseudocount.use = 1,
   return.thresh = 1e-2,
+  p.adjust.method = 'bonferroni',
   ...
 ) {
   MapVals <- function(vec, from, to) {
@@ -129,6 +130,7 @@ FindAllMarkers <- function(
           min.cells.feature = min.cells.feature,
           min.cells.group = min.cells.group,
           pseudocount.use = pseudocount.use,
+		  p.adjust.method = p.adjust.method,
           ...
         )
       },
@@ -448,6 +450,7 @@ FindConservedMarkers <- function(
 #' @param min.cells.group Minimum number of cells in one of the groups
 #' @param pseudocount.use Pseudocount to add to averaged expression values when
 #' calculating logFC. 1 by default.
+#' @param p.adjust.method See \code{p.adjust}. Default: bonferroni.
 #'
 #' @importFrom Matrix rowSums rowMeans
 #' @importFrom stats p.adjust
@@ -476,6 +479,7 @@ FindMarkers.default <- function(
   min.cells.feature = 3,
   min.cells.group = 3,
   pseudocount.use = 1,
+  p.adjust.method = 'bonferroni',
   ...
 ) {
   features <- features %||% rownames(x = object)
@@ -690,7 +694,7 @@ FindMarkers.default <- function(
     de.results <- de.results[order(de.results$p_val, -de.results[, diff.col]), ]
     de.results$p_val_adj = p.adjust(
       p = de.results$p_val,
-      method = "bonferroni",
+      method = p.adjust.method, #"bonferroni",
       n = nrow(x = object)
     )
   }
@@ -738,6 +742,7 @@ FindMarkers.Seurat <- function(
   min.cells.feature = 3,
   min.cells.group = 3,
   pseudocount.use = 1,
+  p.adjust.method = 'bonferroni',
   ...
 ) {
   if (!is.null(x = group.by)) {
@@ -835,6 +840,7 @@ FindMarkers.Seurat <- function(
     min.cells.feature = min.cells.feature,
     min.cells.group = min.cells.group,
     pseudocount.use = pseudocount.use,
+	p.adjust.method = p.adjust.method,
     ...
   )
   return(de.results)
