@@ -29,6 +29,7 @@ FindMarkers(object, ...)
   min.cells.feature = 3,
   min.cells.group = 3,
   pseudocount.use = 1,
+  p.adjust.method = "bonferroni",
   ...
 )
 
@@ -54,6 +55,7 @@ FindMarkers(object, ...)
   min.cells.feature = 3,
   min.cells.group = 3,
   pseudocount.use = 1,
+  p.adjust.method = "bonferroni",
   ...
 )
 }
@@ -148,6 +150,8 @@ of the two groups, currently only used for poisson and negative binomial tests}
 
 \item{pseudocount.use}{Pseudocount to add to averaged expression values when
 calculating logFC. 1 by default.}
+
+\item{p.adjust.method}{See \code{p.adjust}. Default: bonferroni.}
 
 \item{ident.1}{Identity class to define markers for; pass an object of class
 \code{phylo} or 'clustertree' to find markers for a node in a cluster tree;

@@ -24,6 +24,7 @@ FindAllMarkers(
   min.cells.group = 3,
   pseudocount.use = 1,
   return.thresh = 0.01,
+  p.adjust.method = "bonferroni",
   ...
 )
 }
@@ -113,6 +114,8 @@ of the two groups, currently only used for poisson and negative binomial tests}
 calculating logFC. 1 by default.}
 
 \item{return.thresh}{Only return markers that have a p-value < return.thresh, or a power > return.thresh (if the test is ROC)}
+
+\item{p.adjust.method}{See \code{p.adjust}. Default: bonferroni.}
 
 \item{...}{Arguments passed to other methods and to specific DE methods}
 }
